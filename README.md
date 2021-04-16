@@ -7,7 +7,7 @@
 3.	Azure Devops agent 
 4.	Mobile Device
 
-**Procedure:**
+## Setup
 ### Install and configure Selenium Grid Infrastructure:
 1.	Download Selenium Grid 3.141.59 from **https://www.selenium.dev/downloads/**
 2.	Setup Local Hub 

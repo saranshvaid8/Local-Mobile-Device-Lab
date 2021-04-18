@@ -26,6 +26,7 @@ An `Appium server instance` can only interact with a single device, so we would 
 Let's start by creating a `device config`, this would be a **.json** file `per device` needed for selenium grid to match our execution request.
 
 **Capabilities** : This is required by appium to interact with our devices
+
 **Configuration**: This is required by selenium grid to know about the appium server
 
 ``` 

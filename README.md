@@ -77,5 +77,5 @@ appium --session-override --nodeconfig <LocationOfYourDeviceConfig.json> -p <por
 	 	
 
 
-### Execute Your Tests via a Azure Devops 
+### Execute Your Tests via Azure Devops 
 **WIP**

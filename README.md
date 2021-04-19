@@ -1,5 +1,5 @@
 # Local-Mobile-Device-Farm
-**Intent:** The idea is to investigate the feasibility of executing mobile tests via azure devops agent on a local Appium Instance.
+**Intent:** To create a local mobile device lab to executing mobile tests via azure devops Self-Hosted agent.
 
 **Tools Used:**
 1.	Selenium Grid 3.141
@@ -79,7 +79,6 @@ appium --session-override --nodeconfig <LocationOfYourDeviceConfig.json> -p <por
 	 	
 
 
-**(Optional Step)**
 ### Execute Your Tests via Azure Devops using Self-Hosted agents
 
 1. 	Register the machine with the Selenium Grid server as a [Self-Hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-windows?view=azure-devops) 

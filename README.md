@@ -8,6 +8,7 @@
 4.	Mobile Device
 
 ## Setup
+
 ### Install and configure Selenium Grid Infrastructure:
 1.	Download Selenium Grid 3.141.59 from **https://www.selenium.dev/downloads/**
 2.	Setup Local Hub 
@@ -78,5 +79,29 @@ appium --session-override --nodeconfig <LocationOfYourDeviceConfig.json> -p <por
 	 	
 
 
-### Execute Your Tests via Azure Devops 
-**WIP**
+**(Optional Step)**
+### Execute Your Tests via Azure Devops using Self-Hosted agents
+
+1. 	Register the machine with the Selenium Grid server as a [Self-Hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-windows?view=azure-devops) 
+
+2.	Download, configure and run the agent 
+
+3.	In your code where you initialize the `Appium driver` use the selenium grid url
+
+		e.g. ` driver = new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4444/wd/hub"), appiumOptions, TimeSpan.FromMinutes(config.DriverInitTimeOut));`	
+	
+5.	Assign your agent to your release/pipeline agent job
+
+6.	Deploy/Run your tests
+
+7.	**On Success** 
+
+   	You would notice the Grid Console Registering your requests and tests being executed on the registered devices
+
+```
+11:13:49.557 INFO [RequestHandler.process] - Got a request to create a new session: Capabilities {app: C:\agent\_work\r1\a\_Test F..., appActivity: com.pegasustranstech.transf..., appPackage: com.pegasustranstech.transf..., autoGrantPermissions: true, deviceName: moto_g_7__power, deviceOrientation: landscape, fullReset: true, newCommandTimeout: 120, noReset: false, platformName: android, tabletOnly: true, udid: AM@ZING}
+11:13:49.565 INFO [TestSlot.getNewSession] - Trying to create a new session on test slot {server:CONFIG_UUID=7e3bf1c8-6caf-4241-ae50-72e5a16d9ae4, Udid=emulator-5554, seleniumProtocol=WebDriver, browserName=Chrome, maxInstances=1, platformName=Android, NoReset=false, deviceName=emulator-5554, platform=ANDROID}
+
+```
+
+

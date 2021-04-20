@@ -1,5 +1,5 @@
 # Local-Mobile-Device-Farm
-**Intent:** To create a local mobile device lab to executing mobile tests via azure devops Self-Hosted agent.
+**Intent:** To create a mobile device lab to execute mobile tests via azure devops Self-Hosted agent.
 
 **Tools Used:**
 1.	Selenium Grid 3.141
@@ -30,8 +30,8 @@ Let's start by creating a `device config`, this would be a **.json** file `per d
 
 **Configuration**: This is required by selenium grid to know about the appium server
 
-``` 
-
+```json 
+=======Android========
 {
 	"capabilities": [
     	{
@@ -48,14 +48,41 @@ Let's start by creating a `device config`, this would be a **.json** file `per d
 			"cleanUpCycle": 2000,
 			"timeout": 30000,
 			"proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
-			"host": "192.168.184.1",
+			"host": "127.0.0.1",
 			"port": 4726,
 			"maxSession": 1,
 			"register": true,
-			"url": "http://192.168.184.1:4726/wd/hub",
+			"url": "http://127.0.0.1:4726/wd/hub",
 			"registerCycle": 5000,
 			"hubPort": 4444,
 			"hubHost": "127.0.0.1"
+	}
+}
+```
+```json
+=======IOS=======
+{
+	"capabilities": [{
+		"deviceName": "iphone",
+		"platformName": "iOS",
+		"automationName": "XCUITest",
+		"platformVersion": "12.14",
+		"udid": "isdhsd32335d",
+		"browserName": "Safari",
+		"maxInstances": 1
+	}],
+	"configuration": {
+		"cleanUpCycle": 2000,
+		"timeout": 30000,
+		"proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+		"host": "127.0.0.1",
+		"port": 4725,
+		"maxSession": 1,
+		"register": true,
+		"url": "http://127.0.0.1:4725/wd/hub",
+		"registerCycle": 5000,
+		"hubPort": 4444,
+		"hubHost": "127.0.0.1"
 	}
 }
 ```
@@ -85,9 +112,12 @@ appium --session-override --nodeconfig <LocationOfYourDeviceConfig.json> -p <por
 
 2.	Download, configure and run the agent 
 
-3.	In your code where you initialize the `Appium driver` use the selenium grid url
+3.	In your code where you initialize the `Appium driver` using the selenium grid url
 
-		e.g. ` driver = new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4444/wd/hub"), appiumOptions, TimeSpan.FromMinutes(config.DriverInitTimeOut));`	
+		```
+		e.g.  driver = new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4444/wd/hub"), appiumOptions, TimeSpan.FromMinutes(config.DriverInitTimeOut));
+		
+		```
 	
 5.	Assign your agent to your release/pipeline agent job
 
